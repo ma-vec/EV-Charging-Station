@@ -20,23 +20,21 @@ namespace EV_Charging_Station
         {
             get { return serialNumber; }
         }
-        private int power;
-        public int Power
+        private int powerMax;
+        public int PowerMax
         {
-            get { return power; }
-            set { power = value; }
+            get { return powerMax; }
         }
         private bool isFree;
         public bool IsFree { get { return isFree; } }
 
-        private string stringForUI;
+        private string stringForUI; //necessario per utilizzo listbox
         public string StringForUI { get { return stringForUI; } }
 
         public void GivePower(Car car)
         {
             if(car ==  null || car.IsCharging || car.Soc == 100)
                 return;
-            power = 150;
             isFree = false;
             car.StartCharging();
             stringForUI = car.Id.ToString() + " in carica in " + serialNumber;
@@ -45,10 +43,9 @@ namespace EV_Charging_Station
         {
             if (car == null || !car.IsCharging)
                 return;
-            power = 0;
             SetFree();
             car.StopCharging();
-            car.ExitToPark(); //una volta terminata la ricarica esce in automatico dal parcheggio
+            //car.ExitToPark(); //una volta terminata la ricarica esce in automatico dal parcheggio
         }
         public void SetFree()
         {
@@ -57,9 +54,11 @@ namespace EV_Charging_Station
         }
 
 
-        public Station(string serialNumber)
+        public Station(string serialNumber, int powerMax)
         {
             this.serialNumber = serialNumber;
+            this.powerMax = powerMax;
+
         }
     }
 }

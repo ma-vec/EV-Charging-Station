@@ -24,18 +24,17 @@ public partial class Form1 : Form
     {
         if (autoObj == null)
         {
-            this.Invoke((MethodInvoker)delegate
+            this.Invoke((MethodInvoker)delegate //delegate assegna le operazioni UI a thread principale
             {
                 MessageBox.Show("Errore: oggetto auto nullo.");
             });
             return;
         }
 
-        Car auto = (Car)autoObj;
+        Car auto = (Car)autoObj; //riconverte un obj (necessario per la funzione) in Car
 
         try
         {
-            //MessageBox.Show("In try");
             // Attende una colonnina libera
             stationSemaphore.Wait();
 
@@ -57,12 +56,16 @@ public partial class Form1 : Form
                 this.Invoke((MethodInvoker)delegate
                 {
                     UpdateForm();
-                    MessageBox.Show($"Auto {auto.Id} è collegata alla colonnina {assignedStation.SerialNumber}");
+                    MessageBox.Show($"Auto {auto.Id} ({auto.Soc}%) è collegata alla colonnina {assignedStation.SerialNumber}");
                 });
-
                 // Simula il processo di ricarica
-                Thread.Sleep(10000); // Tempo di ricarica
-                auto.Soc = 100;
+                int timeForPerc = (int)((1) / ((double)assignedStation.PowerMax / 10000));
+                do {
+                    Thread.Sleep(timeForPerc);
+                    auto.Soc += 1;
+                    auto.UpdateSoC();
+                    UpdateForm();
+                } while (auto.Soc != 100);
                 assignedStation.StopPower(auto);
 
                 this.Invoke((MethodInvoker)delegate
@@ -84,7 +87,7 @@ public partial class Form1 : Form
             // Libera una colonnina
             if (stationSemaphore != null)
             {
-                stationSemaphore.Release();
+                stationSemaphore.Release(); //semaphore rilascia la risorsa colonnina al termine
             }
             UpdateForm();
         }
@@ -97,10 +100,10 @@ public partial class Form1 : Form
 
         lock (AllStations)
         {
-            freeStations = AllStations.FindAll(station => station.IsFree).Count;
+            freeStations = AllStations.FindAll(station => station.IsFree).Count; //conta le stazioni libere
         }
 
-        this.Invoke((MethodInvoker)delegate
+        this.Invoke((MethodInvoker)delegate //gestione UI
         {
             labelFreeStationNumber.Text = freeStations.ToString();
             listBoxStation.DataSource = null;
@@ -122,11 +125,15 @@ public partial class Form1 : Form
 
         CarCounter++;
         Car car = new Car(CarCounter);
-        lock (AllCars) {
-            AllCars.Add(car);
+        car.Soc = Convert.ToInt32(numericSoC.Value);
+        lock (AllCars)
+        {
+            AllCars.Insert(0, car); // Aggiorna la lista
+            
         }
-        car.StopCharging();
-        MessageBox.Show($"Auto {car.Id} aggiunta.");
+
+        car.StopCharging(); //garantisce che l'auto sia inizializzata come non in carica
+        //MessageBox.Show($"Auto {car.Id} aggiunta.");
         Thread threadCar = new Thread(() => ThreadAuto(car));
         threadCar.Start();
         UpdateForm();
@@ -134,30 +141,32 @@ public partial class Form1 : Form
 
     private void buttonAddStation_Click(object sender, EventArgs e)
     {
-        StationCounter++;
-        Station station = new Station($"S{StationCounter}");
-        station.SetFree();
-
-        lock (AllStations)
+        
+        int power=0;
+        string typeStation=null;
+        switch(comboBoxStation.SelectedIndex)
         {
-            AllStations.Add(station);
+            case 0: power = 22; typeStation = "Q"; break;
+            case 1: power = 50; typeStation = "F"; break;
+            case 2: power = 150; typeStation = "H"; break;
+            default: MessageBox.Show("Seleziona una potenza dall'elenco a discesa", "Errore"); break;
         }
-
-        /*if (stationSemaphore == null)
+        if (power != 0)
         {
-            // Inizializza il semaforo con il numero attuale di colonnine
-            stationSemaphore = new SemaphoreSlim(AllStations.Count, AllStations.Count);
+            StationCounter++;
+            Station station = new Station($"{typeStation}{StationCounter}", power);
+            station.SetFree();
+
+            lock (AllStations)
+            {
+                AllStations.Add(station);
+            }
+
+            stationSemaphore.Release();
+
+            //MessageBox.Show($"Colonnina {station.SerialNumber} aggiunta.");
+            UpdateForm();
         }
-        else
-        {
-            // Aggiorna il limite massimo del semaforo
-            int currentCount = stationSemaphore.CurrentCount;
-            stationSemaphore = new SemaphoreSlim(currentCount, AllStations.Count);
-        }*/
-        stationSemaphore.Release();
-
-        MessageBox.Show($"Colonnina {station.SerialNumber} aggiunta.");
-        UpdateForm();
     }
 
 }

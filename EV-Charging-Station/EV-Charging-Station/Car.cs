@@ -12,13 +12,13 @@ namespace EV_Charging_Station
         private int id; //Assegnato progressivamente alle nuove auto
         public int Id { get { return id; } }
 
-        private bool isInPark; //true se l'auto è entrata nel parcheggio
-        public bool IsInPark { get { return IsInPark; } }
+       /* private bool isInPark; //true se l'auto è entrata nel parcheggio
+        public bool IsInPark { get { return IsInPark; } }*/
 
         private bool isCharging;
         public bool IsCharging { get { return isCharging; } }
 
-        private string cstringForUI;
+        private string cstringForUI; //necessario per utilizzo listbox
         public string CstringForUI { get { return cstringForUI; } }
 
         private int soc;
@@ -36,19 +36,10 @@ namespace EV_Charging_Station
             }
         }
 
-        public void EnterInPark()
-        {
-            isInPark = true;
-        }
-        public void ExitToPark()
-        {
-            isInPark = false;
-        }
-
         public void StartCharging()
         {
             isCharging = true;
-            cstringForUI = id.ToString() + " collegata";
+            UpdateSoC();
         }
         public void StopCharging()
         {
@@ -60,6 +51,10 @@ namespace EV_Charging_Station
             {
                 cstringForUI = id.ToString() + " terminato";
             }
+        }
+        public void UpdateSoC()
+        {
+            cstringForUI = id.ToString() + " collegata (" + soc.ToString() + "%)";
         }
 
         public Car(int id)
