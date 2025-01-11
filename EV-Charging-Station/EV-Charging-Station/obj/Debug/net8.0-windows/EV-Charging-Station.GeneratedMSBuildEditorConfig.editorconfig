@@ -14,6 +14,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = EV_Charging_Station
-build_property.ProjectDir = F:\MRA\TPS\EV-Charging-Station\EV-Charging-Station\EV-Charging-Station\
+build_property.ProjectDir = D:\Uaers\vecchi.21208\EV-Charging-Station\EV-Charging-Station\EV-Charging-Station\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

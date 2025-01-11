@@ -12,9 +12,6 @@ namespace EV_Charging_Station
         private int id; //Assegnato progressivamente alle nuove auto
         public int Id { get { return id; } }
 
-       /* private bool isInPark; //true se l'auto è entrata nel parcheggio
-        public bool IsInPark { get { return IsInPark; } }*/
-
         private bool isCharging;
         public bool IsCharging { get { return isCharging; } }
 

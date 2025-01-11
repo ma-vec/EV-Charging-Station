@@ -24,6 +24,7 @@ namespace EV_Charging_Station
         public int PowerMax
         {
             get { return powerMax; }
+            set {  powerMax = value; } //necessario simulazione BMS
         }
         private bool isFree;
         public bool IsFree { get { return isFree; } }
@@ -45,7 +46,6 @@ namespace EV_Charging_Station
                 return;
             SetFree();
             car.StopCharging();
-            //car.ExitToPark(); //una volta terminata la ricarica esce in automatico dal parcheggio
         }
         public void SetFree()
         {

@@ -59,14 +59,25 @@ public partial class Form1 : Form
                     MessageBox.Show($"Auto {auto.Id} ({auto.Soc}%) è collegata alla colonnina {assignedStation.SerialNumber}");
                 });
                 // Simula il processo di ricarica
-                int timeForPerc = (int)((1) / ((double)assignedStation.PowerMax / 10000));
+                int tempP = assignedStation.PowerMax; //salva la potenza di "base", poi modificata in base a BMS
+                double coeffDiminuzione=0.85;
                 do {
+                    
+                    if(auto.Soc>=80 && auto.Soc<95)
+                    {
+                        coeffDiminuzione -= 0.05; //simula la curva di ricarica
+                        assignedStation.PowerMax = (int)(tempP*coeffDiminuzione);
+                        //MessageBox.Show(assignedStation.PowerMax.ToString(),coeffDiminuzione.ToString());
+                    }
+                    int timeForPerc = (int)((1) / ((double)assignedStation.PowerMax / 10000)); //nel do per cambiare power (BMS)
+                    //if(auto.Soc>=80) { MessageBox.Show(assignedStation.PowerMax.ToString()); }
                     Thread.Sleep(timeForPerc);
                     auto.Soc += 1;
                     auto.UpdateSoC();
                     UpdateForm();
                 } while (auto.Soc != 100);
                 assignedStation.StopPower(auto);
+                assignedStation.PowerMax = tempP; //riporta la stazione alla potenza definita
 
                 this.Invoke((MethodInvoker)delegate
                 {
@@ -133,7 +144,6 @@ public partial class Form1 : Form
         }
 
         car.StopCharging(); //garantisce che l'auto sia inizializzata come non in carica
-        //MessageBox.Show($"Auto {car.Id} aggiunta.");
         Thread threadCar = new Thread(() => ThreadAuto(car));
         threadCar.Start();
         UpdateForm();
@@ -164,7 +174,6 @@ public partial class Form1 : Form
 
             stationSemaphore.Release();
 
-            //MessageBox.Show($"Colonnina {station.SerialNumber} aggiunta.");
             UpdateForm();
         }
     }
