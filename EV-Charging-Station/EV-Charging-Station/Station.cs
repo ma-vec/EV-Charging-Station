@@ -24,7 +24,15 @@ namespace EV_Charging_Station
         public int PowerMax
         {
             get { return powerMax; }
-            set {  powerMax = value; } //necessario simulazione BMS
+            set
+            {
+                if (value < 20)
+                    powerMax = 20;
+                else if (value > 350)
+                    powerMax = 350;
+                else
+                    powerMax = value;
+            } //necessario simulazione BMS
         }
         private bool isFree;
         public bool IsFree { get { return isFree; } }

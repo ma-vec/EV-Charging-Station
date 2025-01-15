@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Uaers\\vecchi.21208\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station.csproj": {}
+    "C:\\Users\\vecchi.21208\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station.csproj": {}
   },
   "projects": {
-    "D:\\Uaers\\vecchi.21208\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station.csproj": {
+    "C:\\Users\\vecchi.21208\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Uaers\\vecchi.21208\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station.csproj",
+        "projectUniqueName": "C:\\Users\\vecchi.21208\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station.csproj",
         "projectName": "EV-Charging-Station",
-        "projectPath": "D:\\Uaers\\vecchi.21208\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station.csproj",
+        "projectPath": "C:\\Users\\vecchi.21208\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station.csproj",
         "packagesPath": "C:\\Users\\vecchi.21208\\.nuget\\packages\\",
-        "outputPath": "D:\\Uaers\\vecchi.21208\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station\\obj\\",
+        "outputPath": "C:\\Users\\vecchi.21208\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -68,7 +68,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

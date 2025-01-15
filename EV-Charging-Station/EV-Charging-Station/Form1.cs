@@ -10,6 +10,8 @@ public partial class Form1 : Form
     int freeStations = 0;
     int CarCounter = 0; // Contatore per identificare un'auto
     int StationCounter = 0; // Contatore per identificare una colonnina
+    int PowerForProgressBar;
+    int tempP; //valore potenza massima di partenza
     SemaphoreSlim stationSemaphore = new SemaphoreSlim(0); // Gestione concorrenza
 
     List<Station> AllStations = new List<Station>();
@@ -52,30 +54,47 @@ public partial class Form1 : Form
 
             if (assignedStation != null)
             {
-                
+
                 this.Invoke((MethodInvoker)delegate
                 {
                     UpdateForm();
                     MessageBox.Show($"Auto {auto.Id} ({auto.Soc}%) è collegata alla colonnina {assignedStation.SerialNumber}");
                 });
                 // Simula il processo di ricarica
-                int tempP = assignedStation.PowerMax; //salva la potenza di "base", poi modificata in base a BMS
-                double coeffDiminuzione=0.85;
-                do {
-                    
-                    if(auto.Soc>=80 && auto.Soc<95)
+                PowerForProgressBar = assignedStation.PowerMax;
+                tempP = assignedStation.PowerMax; //salva la potenza di "base", poi modificata in base a BMS
+                double coeffDiminuzione; //regola la curva di ricarica in base al tipo di colonnina
+
+                if (tempP < 40)
+                {
+                    coeffDiminuzione = 1;
+                }
+                else if (tempP < 100)
+                {
+                    coeffDiminuzione = 0.9;
+                }
+                else
+                {
+                    coeffDiminuzione = 0.85;
+                }
+                do
+                {
+
+                    if (auto.Soc >= 80 && auto.Soc < 95)
                     {
                         coeffDiminuzione -= 0.05; //simula la curva di ricarica
-                        assignedStation.PowerMax = (int)(tempP*coeffDiminuzione);
-                        //MessageBox.Show(assignedStation.PowerMax.ToString(),coeffDiminuzione.ToString());
+                        assignedStation.PowerMax = (int)(tempP * coeffDiminuzione);
+                        PowerForProgressBar = assignedStation.PowerMax;
+
                     }
                     int timeForPerc = (int)((1) / ((double)assignedStation.PowerMax / 10000)); //nel do per cambiare power (BMS)
-                    //if(auto.Soc>=80) { MessageBox.Show(assignedStation.PowerMax.ToString()); }
+
                     Thread.Sleep(timeForPerc);
                     auto.Soc += 1;
                     auto.UpdateSoC();
                     UpdateForm();
                 } while (auto.Soc != 100);
+
                 assignedStation.StopPower(auto);
                 assignedStation.PowerMax = tempP; //riporta la stazione alla potenza definita
 
@@ -107,7 +126,7 @@ public partial class Form1 : Form
 
     private void UpdateForm()
     {
-        
+
 
         lock (AllStations)
         {
@@ -123,7 +142,9 @@ public partial class Form1 : Form
             listBoxCars.DataSource = null;
             listBoxCars.DataSource = AllCars;
             listBoxCars.DisplayMember = "cstringForUI";
+            progressBarHPC.Value = PowerForProgressBar;
         });
+        
     }
 
     private void buttonAddCar_Click(object sender, EventArgs e)
@@ -140,7 +161,7 @@ public partial class Form1 : Form
         lock (AllCars)
         {
             AllCars.Insert(0, car); // Aggiorna la lista
-            
+
         }
 
         car.StopCharging(); //garantisce che l'auto sia inizializzata come non in carica
@@ -151,10 +172,10 @@ public partial class Form1 : Form
 
     private void buttonAddStation_Click(object sender, EventArgs e)
     {
-        
-        int power=0;
-        string typeStation=null;
-        switch(comboBoxStation.SelectedIndex)
+
+        int power = 0;
+        string typeStation = null;
+        switch (comboBoxStation.SelectedIndex)
         {
             case 0: power = 22; typeStation = "Q"; break;
             case 1: power = 50; typeStation = "F"; break;
@@ -166,6 +187,11 @@ public partial class Form1 : Form
             StationCounter++;
             Station station = new Station($"{typeStation}{StationCounter}", power);
             station.SetFree();
+
+            this.Invoke((MethodInvoker)delegate
+            {
+                progressBarHPC.Maximum=power;
+            });
 
             lock (AllStations)
             {

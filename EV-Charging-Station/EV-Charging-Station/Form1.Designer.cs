@@ -39,6 +39,7 @@
             label2 = new Label();
             comboBoxStation = new ComboBox();
             numericSoC = new NumericUpDown();
+            progressBarHPC = new ProgressBar();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericSoC).BeginInit();
             SuspendLayout();
@@ -148,11 +149,23 @@
             numericSoC.Size = new Size(120, 23);
             numericSoC.TabIndex = 8;
             // 
+            // progressBarHPC
+            // 
+            progressBarHPC.ForeColor = SystemColors.HotTrack;
+            progressBarHPC.Location = new Point(37, 70);
+            progressBarHPC.Maximum = 150;
+            progressBarHPC.Name = "progressBarHPC";
+            progressBarHPC.Size = new Size(204, 23);
+            progressBarHPC.Step = 1;
+            progressBarHPC.Style = ProgressBarStyle.Continuous;
+            progressBarHPC.TabIndex = 9;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(948, 547);
+            Controls.Add(progressBarHPC);
             Controls.Add(numericSoC);
             Controls.Add(comboBoxStation);
             Controls.Add(groupBox1);
@@ -182,5 +195,6 @@
         private Label label2;
         private ComboBox comboBoxStation;
         private NumericUpDown numericSoC;
+        private ProgressBar progressBarHPC;
     }
 }
