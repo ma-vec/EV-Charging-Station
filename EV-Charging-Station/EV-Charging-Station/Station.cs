@@ -15,11 +15,15 @@ namespace EV_Charging_Station
             set { carInCharge = value; }
         }
 
-        private string serialNumber;
-        public string SerialNumber
+        private string type;
+        public string Type
         {
-            get { return serialNumber; }
+            get { return type; }
         }
+
+        private int id;
+        public int Id { get { return id; } }
+
         private int powerMax;
         public int PowerMax
         {
@@ -46,7 +50,7 @@ namespace EV_Charging_Station
                 return;
             isFree = false;
             car.StartCharging();
-            stringForUI = car.Id.ToString() + " in carica in " + serialNumber;
+            stringForUI = car.Id.ToString() + " in carica in " + type+id.ToString();
         }
         public void StopPower(Car car)
         {
@@ -58,13 +62,14 @@ namespace EV_Charging_Station
         public void SetFree()
         {
             isFree = true;
-            stringForUI = serialNumber + " libera";
+            stringForUI = type + id.ToString() + " libera";
         }
 
 
-        public Station(string serialNumber, int powerMax)
+        public Station(string type, int id, int powerMax)
         {
-            this.serialNumber = serialNumber;
+            this.type = type;
+            this.id = id;
             this.powerMax = powerMax;
 
         }

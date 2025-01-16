@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\vecchi.21208\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station.csproj": {}
+    "F:\\MRA\\TPS\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station.csproj": {}
   },
   "projects": {
-    "C:\\Users\\vecchi.21208\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station.csproj": {
+    "F:\\MRA\\TPS\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vecchi.21208\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station.csproj",
+        "projectUniqueName": "F:\\MRA\\TPS\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station.csproj",
         "projectName": "EV-Charging-Station",
-        "projectPath": "C:\\Users\\vecchi.21208\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station.csproj",
-        "packagesPath": "C:\\Users\\vecchi.21208\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vecchi.21208\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station\\obj\\",
+        "projectPath": "F:\\MRA\\TPS\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station.csproj",
+        "packagesPath": "C:\\Users\\dadav\\.nuget\\packages\\",
+        "outputPath": "F:\\MRA\\TPS\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\vecchi.21208\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\dadav\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
