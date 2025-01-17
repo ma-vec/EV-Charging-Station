@@ -15,7 +15,7 @@ namespace EV_Charging_Station
         private bool isCharging;
         public bool IsCharging { get { return isCharging; } }
 
-        private string cstringForUI; //necessario per utilizzo listbox
+        private string cstringForUI; //necessario per utilizzo listbox (log)
         public string CstringForUI { get { return cstringForUI; } }
 
         private int soc;

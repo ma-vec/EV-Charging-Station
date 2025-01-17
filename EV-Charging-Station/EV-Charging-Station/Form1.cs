@@ -11,7 +11,7 @@ public partial class Form1 : Form
     int CarCounter = 0; // Contatore per identificare un'auto
     int StationCounter = 0; // Contatore per identificare una colonnina
     int PowerForProgressBar;
-    int tempP; //valore potenza massima di partenza
+
     SemaphoreSlim stationSemaphore = new SemaphoreSlim(0); // Gestione concorrenza
 
     List<Station> AllStations = new List<Station>();
@@ -19,6 +19,8 @@ public partial class Form1 : Form
 
     private Label[] labelsStation = new Label[100]; //Array per label Stazioni
     private ProgressBar[] barStation = new ProgressBar[100]; //Array per progress bar Stazioni
+    private Label[] labelsCar = new Label[100]; //Array label auto
+    private ProgressBar[] barCar = new ProgressBar[100]; //Array progress bar auto
 
     public Form1()
     {
@@ -52,7 +54,6 @@ public partial class Form1 : Form
                 if (assignedStation != null)
                 {
                     assignedStation.GivePower(auto);
-                    //MessageBox.Show("colonnina assegnata");
                 }
             }
 
@@ -66,7 +67,7 @@ public partial class Form1 : Form
                 });
                 // Simula il processo di ricarica
                 PowerForProgressBar = assignedStation.PowerMax;
-                tempP = assignedStation.PowerMax; //salva la potenza di "base", poi modificata in base a BMS
+                int tempP = assignedStation.PowerMax; //salva la potenza di "base", poi modificata in base a BMS
                 double coeffDiminuzione; //regola la curva di ricarica in base al tipo di colonnina
 
                 if (tempP < 40)
@@ -79,11 +80,11 @@ public partial class Form1 : Form
                 }
                 else
                 {
-                    coeffDiminuzione = 0.85;
+                    coeffDiminuzione = 0.8;
                 }
+
                 do
                 {
-
                     if (auto.Soc >= 80 && auto.Soc < 95)
                     {
                         coeffDiminuzione -= 0.05; //simula la curva di ricarica
@@ -97,16 +98,13 @@ public partial class Form1 : Form
                     auto.Soc += 1;
                     auto.UpdateSoC();
                     UpdateLabelStation(assignedStation);
+                    UpdateCarUI(auto, assignedStation);
                     UpdateForm();
                 } while (auto.Soc != 100);
 
                 assignedStation.StopPower(auto);
                 assignedStation.PowerMax = tempP; //riporta la stazione alla potenza definita
 
-                this.Invoke((MethodInvoker)delegate
-                {
-                    MessageBox.Show($"Auto {auto.Id} ha terminato la ricarica dalla colonnina {assignedStation.Type}{assignedStation.Id.ToString()}");
-                });
             }
         }
         catch (Exception ex)
@@ -125,6 +123,7 @@ public partial class Form1 : Form
                 stationSemaphore.Release(); //semaphore rilascia la risorsa colonnina al termine
             }
             UpdateLabelStation(assignedStation);
+            UpdateCarUI(auto, assignedStation);
             UpdateForm();
         }
     }
@@ -139,7 +138,7 @@ public partial class Form1 : Form
             freeStations = AllStations.FindAll(station => station.IsFree).Count; //conta le stazioni libere
         }
 
-        this.Invoke((MethodInvoker)delegate //gestione UI
+        this.Invoke((MethodInvoker)delegate //gestione Log
         {
             labelFreeStationNumber.Text = freeStations.ToString();
             listBoxStation.DataSource = null;
@@ -198,6 +197,7 @@ public partial class Form1 : Form
 
                 this.Invoke((MethodInvoker)delegate
                 {
+                    //Grafica Stations
                     int baseY = 70 + (80 * (StationCounter - 1)); // Aumenta l'offset verticale tra i gruppi
 
                     // Label
@@ -214,6 +214,23 @@ public partial class Form1 : Form
                     barStation[StationCounter - 1].Minimum = 0;
                     barStation[StationCounter - 1].Maximum = power;
                     this.Controls.Add(barStation[StationCounter - 1]);
+
+                    //Grafica auto
+
+                    //Label
+                    labelsCar[StationCounter - 1] = new Label();
+                    labelsCar[StationCounter - 1].Location = new Point(300, baseY);
+                    labelsCar[StationCounter - 1].Size = new Size(170, 30);
+                    labelsCar[StationCounter - 1].Text = "Nessuna auto collegata";
+                    this.Controls.Add(labelsCar[StationCounter - 1]);
+
+                    // Progress Bar
+                    barCar[StationCounter - 1] = new ProgressBar();
+                    barCar[StationCounter - 1].Location = new Point(300, baseY+40); // Offset interno tra label e progress bar
+                    barCar[StationCounter - 1].Size = new Size(204, 23);
+                    barCar[StationCounter - 1].Minimum = 0;
+                    barCar[StationCounter - 1].Maximum = 100;
+                    this.Controls.Add(barCar[StationCounter - 1]);
                 });
 
 
@@ -238,23 +255,62 @@ public partial class Form1 : Form
 
     private void UpdateLabelStation(Station stazione)
     {
-        if(stazione == null) return;
-        if (stazione.IsFree)
+        if (stazione == null) return;
+
+        string labelTextS;
+        int progressValueS;
+
+
+        lock (stazione) // Evita concorrenza quando viene invocata la funzione
         {
-            this.Invoke((MethodInvoker)delegate
-            {//gestione UI
-                labelsStation[stazione.Id - 1].Text = $"{stazione.Type}{stazione.Id.ToString()} libera";
-                barStation[stazione.Id - 1].Value = 0;
-            });
+            if (stazione.IsFree)
+            {
+                labelTextS = $"{stazione.Type}{stazione.Id} libera";
+                progressValueS = 0;
+
+            }
+            else
+            {
+                labelTextS = $"{stazione.Type}{stazione.Id} eroga {stazione.PowerMax} kW";
+                progressValueS = stazione.PowerMax;
+            }
+        }
+
+        this.Invoke((MethodInvoker)delegate
+        {
+            labelsStation[stazione.Id - 1].Text = labelTextS;
+            barStation[stazione.Id - 1].Value = progressValueS;
+        });
+    }
+
+    private void UpdateCarUI(Car auto, Station stazione)
+    {
+        string labelTextC;
+        int progressValueC;
+        if (stazione == null) return;
+
+        if (auto == null || stazione.IsFree)
+        {
+            lock (stazione)
+            {
+                labelTextC = "Nessuna auto collegata";
+                progressValueC = 0;
+            }
         }
         else
         {
-            this.Invoke((MethodInvoker)delegate
-            { //gestione UI
-                labelsStation[stazione.Id - 1].Text = $"{stazione.Type}{stazione.Id.ToString()} eroga {stazione.PowerMax.ToString()} kW";
-                barStation[stazione.Id - 1].Value = stazione.PowerMax;
-            });
+            lock (auto)
+            {
+                labelTextC = $"Auto {auto.Id.ToString()} in carica: {auto.Soc.ToString()}%";
+                progressValueC = auto.Soc;
+            }
         }
+
+        this.Invoke((MethodInvoker)delegate
+        {
+            labelsCar[stazione.Id - 1].Text = labelTextC;
+            barCar[stazione.Id - 1].Value = progressValueC;
+        });
     }
 
 }

@@ -161,7 +161,7 @@
             Controls.Add(labelFreeStationNumber);
             Controls.Add(label1);
             Name = "Form1";
-            Text = "Form1";
+            Text = "DUNA Charging Station";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numericSoC).EndInit();

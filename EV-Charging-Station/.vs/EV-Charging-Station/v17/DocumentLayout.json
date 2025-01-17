@@ -36,7 +36,7 @@
               "RelativeDocumentMoniker": "EV-Charging-Station\\Form1.cs",
               "ToolTip": "F:\\MRA\\TPS\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station\\Form1.cs",
               "RelativeToolTip": "EV-Charging-Station\\Form1.cs",
-              "ViewState": "AgIAAOEAAAAAAAAAAAAUwAQBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADMBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-09T13:58:44.605Z",
               "EditorCaption": ""
@@ -61,7 +61,7 @@
               "RelativeDocumentMoniker": "EV-Charging-Station\\Station.cs",
               "ToolTip": "F:\\MRA\\TPS\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station\\Station.cs",
               "RelativeToolTip": "EV-Charging-Station\\Station.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAuwEcAAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAuwCsAAABLAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-09T13:58:18.526Z",
               "EditorCaption": ""
@@ -74,9 +74,10 @@
               "RelativeDocumentMoniker": "EV-Charging-Station\\Car.cs",
               "ToolTip": "F:\\MRA\\TPS\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station\\Car.cs",
               "RelativeToolTip": "EV-Charging-Station\\Car.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAA5wBgAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAACMAAAAAAAAAAAAIwBEAAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-09T13:57:59.585Z"
+              "WhenOpened": "2025-01-09T13:57:59.585Z",
+              "EditorCaption": ""
             }
           ]
         }

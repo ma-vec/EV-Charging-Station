@@ -36,12 +36,12 @@ namespace EV_Charging_Station
                     powerMax = 350;
                 else
                     powerMax = value;
-            } //necessario simulazione BMS
+            } //set necessario simulazione BMS
         }
         private bool isFree;
         public bool IsFree { get { return isFree; } }
 
-        private string stringForUI; //necessario per utilizzo listbox
+        private string stringForUI; //necessario per utilizzo listbox (log)
         public string StringForUI { get { return stringForUI; } }
 
         public void GivePower(Car car)

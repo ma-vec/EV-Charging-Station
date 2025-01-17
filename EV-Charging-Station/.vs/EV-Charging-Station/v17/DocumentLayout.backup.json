@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "F:\\MRA\\TPS\\EV-Charging-Station\\EV-Charging-Station\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E845C9B7-3CE8-4B13-8B93-B35C662DC560}|EV-Charging-Station\\EV-Charging-Station.csproj|f:\\mra\\tps\\ev-charging-station\\ev-charging-station\\ev-charging-station\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E845C9B7-3CE8-4B13-8B93-B35C662DC560}|EV-Charging-Station\\EV-Charging-Station.csproj|solutionrelative:ev-charging-station\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E845C9B7-3CE8-4B13-8B93-B35C662DC560}|EV-Charging-Station\\EV-Charging-Station.csproj|F:\\MRA\\TPS\\EV-Charging-Station\\EV-Charging-Station\\ev-charging-station\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{E845C9B7-3CE8-4B13-8B93-B35C662DC560}|EV-Charging-Station\\EV-Charging-Station.csproj|solutionrelative:ev-charging-station\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E845C9B7-3CE8-4B13-8B93-B35C662DC560}|EV-Charging-Station\\EV-Charging-Station.csproj|f:\\mra\\tps\\ev-charging-station\\ev-charging-station\\ev-charging-station\\station.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E845C9B7-3CE8-4B13-8B93-B35C662DC560}|EV-Charging-Station\\EV-Charging-Station.csproj|solutionrelative:ev-charging-station\\station.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E845C9B7-3CE8-4B13-8B93-B35C662DC560}|EV-Charging-Station\\EV-Charging-Station.csproj|f:\\mra\\tps\\ev-charging-station\\ev-charging-station\\ev-charging-station\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E845C9B7-3CE8-4B13-8B93-B35C662DC560}|EV-Charging-Station\\EV-Charging-Station.csproj|solutionrelative:ev-charging-station\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E845C9B7-3CE8-4B13-8B93-B35C662DC560}|EV-Charging-Station\\EV-Charging-Station.csproj|f:\\mra\\tps\\ev-charging-station\\ev-charging-station\\ev-charging-station\\car.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E845C9B7-3CE8-4B13-8B93-B35C662DC560}|EV-Charging-Station\\EV-Charging-Station.csproj|solutionrelative:ev-charging-station\\car.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E845C9B7-3CE8-4B13-8B93-B35C662DC560}|EV-Charging-Station\\EV-Charging-Station.csproj|f:\\mra\\tps\\ev-charging-station\\ev-charging-station\\ev-charging-station\\station.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E845C9B7-3CE8-4B13-8B93-B35C662DC560}|EV-Charging-Station\\EV-Charging-Station.csproj|solutionrelative:ev-charging-station\\station.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,24 +26,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Form1.cs",
               "DocumentMoniker": "F:\\MRA\\TPS\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station\\Form1.cs",
               "RelativeDocumentMoniker": "EV-Charging-Station\\Form1.cs",
               "ToolTip": "F:\\MRA\\TPS\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station\\Form1.cs",
               "RelativeToolTip": "EV-Charging-Station\\Form1.cs",
-              "ViewState": "AgIAAOMAAAAAAAAAAAAUwP4AAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAB8BAAAAAAAAAAAuwDMBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-09T13:58:44.605Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Form1.cs [Progettazione]",
               "DocumentMoniker": "F:\\MRA\\TPS\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station\\Form1.cs",
               "RelativeDocumentMoniker": "EV-Charging-Station\\Form1.cs",
@@ -55,28 +55,29 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Station.cs",
               "DocumentMoniker": "F:\\MRA\\TPS\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station\\Station.cs",
               "RelativeDocumentMoniker": "EV-Charging-Station\\Station.cs",
               "ToolTip": "F:\\MRA\\TPS\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station\\Station.cs",
               "RelativeToolTip": "EV-Charging-Station\\Station.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAuwEcAAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAACMAAAAAAAAAAAAIwCsAAABLAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-09T13:58:18.526Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "Car.cs",
               "DocumentMoniker": "F:\\MRA\\TPS\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station\\Car.cs",
               "RelativeDocumentMoniker": "EV-Charging-Station\\Car.cs",
               "ToolTip": "F:\\MRA\\TPS\\EV-Charging-Station\\EV-Charging-Station\\EV-Charging-Station\\Car.cs",
               "RelativeToolTip": "EV-Charging-Station\\Car.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAA5wBgAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAIwBEAAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-09T13:57:59.585Z"
+              "WhenOpened": "2025-01-09T13:57:59.585Z",
+              "EditorCaption": ""
             }
           ]
         }
